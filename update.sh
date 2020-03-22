@@ -1,1 +1,2 @@
-git pull --recurse-submodules && git submodule update --remote
+git pull --recurse-submodules
+git submodule init && git submodule update --remote
