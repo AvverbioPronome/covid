@@ -14,7 +14,7 @@ if [ ! -z "$(git status --porcelain)" ]; then
     docker run -v "$(pwd):/home/jovyan/covid" jupyter/scipy-notebook \
            jupyter nbconvert --inplace --execute '/home/jovyan/covid/*.ipynb'
 
-    git add '*.ipynb' && git commit -m "Re-run with $(git log -1 --format=%s data|cut -d':' -f 1) data."
+    git add '*.ipynb' && git commit -m "re-run with $(git log -1 --format=%s data|cut -d':' -f 1) data."
 fi
 
 if [ ! -z "$STASHED" ]; then
