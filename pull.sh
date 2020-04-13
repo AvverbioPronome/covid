@@ -3,11 +3,11 @@
 cd "$(dirname $0)"
 
 if [ ! -z "$(git status --porcelain)" ]; then
-    git stash push
+    git stash push --quiet
     STASHED="true"
 fi
 
-git pull
+git pull --quiet
 git submodule update --init --remote
 
 if [ ! -z "$(git status --porcelain)" ] || [ "$1" = "--force" ]; then
