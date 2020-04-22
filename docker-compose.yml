@@ -1,0 +1,14 @@
+version: '3'
+services:
+  jupyter:
+    image: jupyter/scipy-notebook
+    volumes:
+      - ./:/home/jovyan/covid
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    ports:
+      - 127.0.0.1:8888:8888
+    command: >-
+      sh -c "pip install --requirement ./covid/requirements.txt\
+             && start-notebook.sh"
+
