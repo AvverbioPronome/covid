@@ -11,12 +11,12 @@ git pull --quiet
 git submodule update --init --remote
 
 if [ -n "$(git status --porcelain)" ] || [ "$1" = "--force" ]; then
-    git add data && git commit -m "$(date +%F): pull pcm-dpc/COVID-19"
+    git add data && git commit -m "$(date +%s): new commits from pcm-dpc/COVID-19"
+    
+    docker-compose run jupyter \
+           jupyter nbconvert --inplace --execute './covid/*.ipynb'
 
-    docker run -v "$(pwd):/home/jovyan/covid" jupyter/scipy-notebook \
-           jupyter nbconvert --inplace --execute '/home/jovyan/covid/*.ipynb'
-
-    git add '*.ipynb' && git commit -m "re-run with $(stat -c %y data/dati-json/ | cut -f1 -d' ') data."
+    git add '*.ipynb' && git commit -m "re-run with $(stat -c %y ./data/dati-json/ | cut -f1 -d' ') data."
 fi
 
 if [ -n "$STASHED" ]; then
