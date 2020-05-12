@@ -4,6 +4,7 @@ services:
     image: jupyter/scipy-notebook
     volumes:
       - ./:/home/jovyan/covid
+      - /tmp/jupyter:/home/jovyan/.local/share/jupyter
     environment:
       - JUPYTER_ENABLE_LAB=yes
     ports:
