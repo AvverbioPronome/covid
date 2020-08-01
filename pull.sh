@@ -15,6 +15,8 @@ if [ -n "$(git status --porcelain)" ] || [ "$1" = "--force" ]; then
     
     docker-compose run jupyter \
            jupyter nbconvert --inplace --execute './covid/*.ipynb'
+    docker-compose run jupyter \
+           jupyter nbconvert './covid/*.ipynb'
 
     git add '*.ipynb' && git commit -m "re-run with $(date --rfc-3339=s --utc -r ./data/dati-json/) data."
 fi
