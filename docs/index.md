@@ -7,6 +7,6 @@ Something something something
 
 ## Indice
 
-{% for page in site.pages %}
-- [{{ page.url }}]({% link page.url %})
+{% for page in site.html_pages %}
+- [{{ page.url }}]({{ site.url }}{{ page.url }})
 {% endfor %}
