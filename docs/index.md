@@ -8,7 +8,8 @@ Something something something
 ## Indice
 
 {% for page in site.pages %}
-{% if {{ page.url | slice: -5 }} == ".html" %}
+{⅜ capture ext %}{{ page.url | slice: -5 }}{% endcapture %}
+{% if ext == ".html" %}
 - [{{ page.title }}]({{ page.url }})
 {% endif %}
 {% endfor %}
