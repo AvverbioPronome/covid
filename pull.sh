@@ -20,17 +20,17 @@ if [ -n "$(git status --porcelain)" ] || [ "$1" = "--force" ]; then
         && git commit -m "re-run with $(date --rfc-3339=s --utc -r ./data/dati-json/) data."
 fi
 
-if [ ! -d "html" ] || [ -z "$(ls -A html)" ] || \
-       [ "$(git log -1 --format=%at)" -gt "$(date +%s --utc -r ./html)" ];
+if [ ! -d "docs" ] || [ -z "$(ls -A docs)" ] || \
+       [ "$(git log -1 --format=%at)" -gt "$(date +%s --utc -r ./docs)" ];
 then
-    [ -d "html" ] || mkdir html
+    [ -d "docs" ] || mkdir docs
     
     # for github pages
     docker-compose run jupyter \
                    jupyter nbconvert './covid/*.ipynb' --template basic \
-        && mv *.html html/ \
-        && sed -i'' -e '1i ---\n---\n' html/*.html \
-        && git add -f html/*.html \
+        && mv *.html docs/ \
+        && sed -i'' -e '1i ---\n---\n' docs/*.html \
+        && git add -f docs/*.html \
         && git commit -m "sync html to commit $(git log -1 --format=%h)"
 fi
 
