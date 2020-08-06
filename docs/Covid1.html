@@ -78,7 +78,8 @@
 <span class="k">def</span> <span class="nf">filter_area</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">area</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;codice_regione&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">area</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">])</span> <span class="p">]</span>
 
-<span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">tz</span><span class="o">=</span><span class="s1">&#39;Europe/Rome&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="n">dati</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span><span class="o">.</span><span class="n">days</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dati aggiornati al   {:%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dati</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Eseguito il          {:%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">tz</span><span class="o">=</span><span class="s1">&#39;Europe/Rome&#39;</span><span class="p">)))</span>
 </pre></div>
 
     </div>
@@ -91,15 +92,14 @@
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[2]:</div>
+    <div class="prompt"></div>
 
 
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>0</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Dati aggiornati al   2020-08-05 17:00:00.
+Eseguito il          2020-08-06 11:30:52.
+</pre>
 </div>
-
 </div>
 
 </div>
