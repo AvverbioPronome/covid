@@ -17,7 +17,7 @@ fi
     mkdir -p  ./data/dati-json/ 
     cd ./data/dati-json/ 
     wget -N https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json
-) || echo "Unable to download fresh data. Are you online?" && exit 1
+) || echo "Unable to download fresh data. Are you online?"
      
 if [ -n "$(git status --porcelain)" ] || [ "$1" = "--force" ]; then
     git add data/* \
