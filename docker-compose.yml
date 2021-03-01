@@ -3,7 +3,7 @@ services:
   jupyter:
     image: jupyter/scipy-notebook
     volumes:
-      - ./:/home/jovyan/covid
+      - ./:/home/jovyan/covid:z
     environment:
       - JUPYTER_ENABLE_LAB=yes
     ports:

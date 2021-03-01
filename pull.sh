@@ -14,8 +14,8 @@ if [ -n "$(git status --porcelain)" ]; then
 fi
 
 (
-    mkdir -p  ./data/dati-json/ 
-    cd ./data/dati-json/ 
+    mkdir -p  ./data/dati-json/
+    cd ./data/dati-json/
     wget -N https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json
 ) || echo "Unable to download fresh data. Are you online?"
      
@@ -24,7 +24,7 @@ if [ -n "$(git status --porcelain)" ] || [ "$1" = "--force" ]; then
         && git commit -m "$(_lastmod ./data/dati-json/dpc-covid19-ita-regioni.json): new data from pcm-dpc/COVID-19"
     
     docker-compose run jupyter \
-                   jupyter nbconvert --inplace --execute './covid/*.ipynb'
+                   jupyter nbconvert --to notebook --inplace --execute './covid/*.ipynb'
 
     git add '*.ipynb' \
         && git commit -m "re-run with $(_lastmod ./data/dati-json/dpc-covid19-ita-regioni.json) data."
@@ -38,7 +38,7 @@ then
     
     # for github pages
     docker-compose run jupyter \
-                   jupyter nbconvert './covid/*.ipynb' --template basic \
+                   jupyter nbconvert --to html './covid/*.ipynb' --template basic \
         && mv *.html docs/ \
         && sed -i'' -e '1i ---\n---\n' docs/*.html \
         && git add -f docs/*.html \
@@ -53,4 +53,4 @@ fi
 
 # for local viewing
 # this runs anyway.
-docker-compose run jupyter jupyter nbconvert './covid/*.ipynb'
+docker-compose run jupyter jupyter nbconvert --to html './covid/*.ipynb'
