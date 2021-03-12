@@ -13,12 +13,8 @@ if [ -n "$(git status --porcelain)" ]; then
     STASHED="true"
 fi
 
-(
-    mkdir -p  ./data/dati-json/
-    cd ./data/dati-json/
-    wget -N https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json
-) || echo "Unable to download fresh data. Are you online?"
-     
+./download.sh
+
 if [ -n "$(git status --porcelain)" ] || [ "$1" = "--force" ]; then
     git add data/* \
         && git commit -m "$(_lastmod ./data/dati-json/dpc-covid19-ita-regioni.json): new data from pcm-dpc/COVID-19"
